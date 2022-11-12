@@ -1,2 +1,3 @@
-# wishtrip-planner
+# dream-itineraty
+
 Application to create exciting visual itinerary ideas that can be shared with friends and family, to garner their interest and see if they want to come.
