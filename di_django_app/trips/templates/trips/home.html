@@ -1,0 +1,11 @@
+<h1>This is the new homepage</h1>
+
+{% for trip in trips %}
+
+<h2>{{ trip.title }}</h2>
+<p>{{ trip.description }}</p>
+<p>{{ trip.dates }}</p>
+<img src="{{ trip.splash_image.url }}" />
+<img src="{{ trip.thumbnail_image.url }}" />
+
+{% endfor %}
