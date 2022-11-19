@@ -1,5 +1,5 @@
 from rest_framework import generics
-from .serializers import TripSerializer
+from .serializers import TripSerializer, ActivitySerializer
 from trips.models import Trip, Activity
 
 # Create your views here.
@@ -10,9 +10,9 @@ class AllTripsList(generics.ListAPIView):
         return Trip.objects
 
 
-# Create your views here.
-class UpdateTrips(generics.UpdateAPIView):
-    serializer_class = TripSerializer
+class ActivitiesList(generics.ListAPIView):
+    serializer_class = ActivitySerializer
 
     def get_queryset(self):
-        return Trip.objects
+        parent_trip = self.kwargs["parent_trip"]
+        return Activity.objects.filter(parent_trip=parent_trip)
