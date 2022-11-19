@@ -1,4 +1,4 @@
-import { getByTitle } from "@testing-library/react";
+import "./trip-card.styles.scss";
 
 const TripCard = (trip) => {
   console.log("Trip is:", trip);
@@ -7,7 +7,7 @@ const TripCard = (trip) => {
   return (
     <div>
       <h3>{title}</h3>
-      <img src={thumbnail_image} />
+      <img className="thumbnail" src={thumbnail_image} />
     </div>
   );
 };
