@@ -14,7 +14,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Hey Dan, this is our app!</h1>
+        <h1>Here are your upcoming Trips!</h1>
         <div className="trips-list">
           {trips.map((trip) => {
             return <TripCard trip={trip} />;
