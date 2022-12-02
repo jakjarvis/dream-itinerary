@@ -1,4 +1,4 @@
-import "./App.scss";
+import "./App.css";
 import { useEffect, useState } from "react";
 import TripCard from "./components/trip-card/trip-card.component";
 

@@ -1,4 +1,4 @@
-import "./trip-card.styles.scss";
+import "./trip-card.styles.css";
 
 const TripCard = (trip) => {
   const { title, thumbnail_image } = trip.trip;
