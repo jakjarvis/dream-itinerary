@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { useEffect, useState } from "react";
 import TripCard from "./components/trip-card/trip-card.component";
 
@@ -11,14 +11,15 @@ const App = () => {
       .then((trips) => setTrips(trips));
   }, []);
 
-  console.log("The trips are:", trips);
-  console.log(trips[0]);
-
   return (
     <div className="App">
       <header className="App-header">
         <h1>Hey Dan, this is our app!</h1>
-        <TripCard trip={trips[0]} />
+        <div className="trips-list">
+          {trips.map((trip) => {
+            return <TripCard trip={trip} />;
+          })}
+        </div>
       </header>
     </div>
   );
