@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import TripCard from "./components/trip-card/trip-card.component";
+import TripList from "./components/trip-list/trip-list.component";
 
 const App = () => {
   const [trips, setTrips] = useState([{}]);
@@ -14,12 +14,8 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Here are your upcoming Trips!</h1>
-        <div className="trips-list">
-          {trips.map((trip) => {
-            return <TripCard trip={trip} />;
-          })}
-        </div>
+        <h1>Here are your upcoming Trips!!</h1>
+        <TripList trips={trips} />
       </header>
     </div>
   );
