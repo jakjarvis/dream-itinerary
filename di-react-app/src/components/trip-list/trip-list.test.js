@@ -3,7 +3,7 @@ import { within } from "@testing-library/dom";
 import TripList from "./trip-list.component";
 
 test("returns trip card for each trip returned from backend", () => {
-  const test_response = [
+  const test_input = [
     {
       title: "Title 1",
       description: "Description 1",
@@ -19,7 +19,7 @@ test("returns trip card for each trip returned from backend", () => {
       thumbnail_image: "thumb_url",
     },
   ];
-  const { getAllByTestId } = render(<TripList trips={test_response} />);
+  const { getAllByTestId } = render(<TripList trips={test_input} />);
   const cards = getAllByTestId("trip-card");
-  expect(cards.length).toEqual(test_response.length);
+  expect(cards.length).toEqual(test_input.length);
 });
