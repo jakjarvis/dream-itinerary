@@ -16,3 +16,10 @@ class ActivitiesList(generics.ListAPIView):
     def get_queryset(self):
         parent_trip = self.kwargs["parent_trip"]
         return Activity.objects.filter(parent_trip=parent_trip)
+
+
+class CreateNewTrip(generics.CreateAPIView):
+    serializer_class = TripSerializer
+
+    def perform_create(self, serializer):
+        serializer.save()
