@@ -1,0 +1,22 @@
+services:
+  #db
+  django_app:
+    build: ./di_django_app
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    volumes:
+      - C:/Users/jakja/Documents/Jarvis-Browne/dream-itinerary/di_django_app:/app
+    env_file:
+      - /di_django_app/.env
+    #depends_on (db)
+  react_app:
+    build: ./di-react-app
+    command: npm start
+    ports:
+      - 3000:3000
+    volumes:
+      - C:/Users/jakja/Documents/Jarvis-Browne/dream-itinerary/di-react-app:/app
+      - /app/node_modules
+    depends_on:
+      - django_app
