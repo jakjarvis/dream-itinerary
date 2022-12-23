@@ -1,0 +1,9 @@
+#[client]
+#database = C:\Users\jakja\Documents\Jarvis-Browne\dream-itinerary\di_django_app\db.sqlite3
+
+[client]
+database = di_db
+host = mysql
+user = system
+password = salkj8723bfj&1234kjsff7!
+port = 3306

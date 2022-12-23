@@ -1,15 +1,24 @@
 services:
-  #db
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "di_db"
+      MYSQL_USER: "system"
+      MYSQL_PASSWORD: "salkj8723bfj&1234kjsff7!"
+      MYSQL_ROOT_PASSWORD: "salkj8723bfj&1234kjsff7!"
   django_app:
     build: ./di_django_app
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - 8000:8000
     volumes:
-      - C:/Users/jakja/Documents/Jarvis-Browne/dream-itinerary/di_django_app:/app
+      - ./di_django_app/:/app/
     env_file:
-      - /di_django_app/.env
-    #depends_on (db)
+      - di_django_app/di_django_app/.env
+    depends_on:
+      - mysql
   react_app:
     build: ./di-react-app
     command: npm start

@@ -8,8 +8,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+import environ
+import json
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # https://stackoverflow.com/questions/15209978/where-to-store-secret-keys-django
 load_dotenv(find_dotenv())
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -79,10 +85,31 @@ WSGI_APPLICATION = "di_django_app.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "di_db",
+        "USER": "system",
+        "PASSWORD": "salkj8723bfj&1234kjsff7!",
+        "HOST": "mysql",  # Name of the db service in docker-compose.yml
+        "PORT": "3306",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": env("DATABASE_ENGINE"),
+#         "OPTIONS": {
+#             "read_default_file": env("DATABASE_OPTIONS"),
+#         },
+#     }
+# }
+
+# Reshaping db parameters on env
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#     }
+# }
 
 
 # Password validation
