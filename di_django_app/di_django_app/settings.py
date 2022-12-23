@@ -83,31 +83,25 @@ WSGI_APPLICATION = "di_django_app.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+### Database config for running in local environment
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "di_db",
-        "USER": "system",
-        "PASSWORD": "salkj8723bfj&1234kjsff7!",
-        "HOST": "mysql",  # Name of the db service in docker-compose.yml
-        "PORT": "3306",
+        "ENGINE": env("DATABASE_ENGINE"),
+        "OPTIONS": {
+            "read_default_file": env("DATABASE_OPTIONS"),
+        },
     }
 }
 
+### Database config for running in dockerized environment
 # DATABASES = {
 #     "default": {
-#         "ENGINE": env("DATABASE_ENGINE"),
-#         "OPTIONS": {
-#             "read_default_file": env("DATABASE_OPTIONS"),
-#         },
-#     }
-# }
-
-# Reshaping db parameters on env
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "di_db",
+#         "USER": "system",
+#         "PASSWORD": "salkj8723bfj&1234kjsff7!",
+#         "HOST": "mysql",  # Name of the db service in docker-compose.yml
+#         "PORT": "3306",
 #     }
 # }
 
