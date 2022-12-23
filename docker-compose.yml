@@ -15,8 +15,6 @@ services:
       - 8000:8000
     volumes:
       - ./di_django_app/:/app/
-    env_file:
-      - di_django_app/di_django_app/.env
     depends_on:
       - mysql
   react_app:
