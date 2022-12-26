@@ -13,10 +13,6 @@ import json
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
 
-# Initialise environment variables
-env = environ.Env()
-environ.Env.read_env()
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # https://stackoverflow.com/questions/15209978/where-to-store-secret-keys-django
 load_dotenv(find_dotenv())
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ["DJANGO_ALLOWED_HOSTS"].split(" ")
 
 
 # Application definition
@@ -89,10 +85,12 @@ WSGI_APPLICATION = "di_django_app.wsgi.application"
 ### Database config for running in local environment
 DATABASES = {
     "default": {
-        "ENGINE": env("DATABASE_ENGINE"),
-        "OPTIONS": {
-            "read_default_file": env("DATABASE_OPTIONS"),
-        },
+        "ENGINE": os.environ["DATABASE_ENGINE"],
+        "NAME": os.environ["DATABASE_NAME"],
+        "USER": os.environ["DATABASE_USER"],
+        "PASSWORD": os.environ["DATABASE_PASSWORD"],
+        "HOST": os.environ["DATABASE_HOST"],
+        "PORT": int(os.environ["DATABASE_PORT"]),
     }
 }
 
